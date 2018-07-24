@@ -14,6 +14,8 @@ public class MyFirstProgram {
         r.a = 4;
         r.b = 6;
         System.out.println("Площадь прямоугольника со сторонами " + r.a + " и " + r.b + " = " + r.area());
+
+
     }
 
     public static void hello (String somebody) {
