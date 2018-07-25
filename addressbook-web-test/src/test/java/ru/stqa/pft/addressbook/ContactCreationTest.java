@@ -23,18 +23,28 @@ public class ContactCreationTest {
         wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true).setBinary("C:\\Program Files\\Mozilla Firefox\\firefox.exe"));
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         wd.get("http://localhost/addressbook/");
+        login();
+    }
+
+    private void login() {
         wd.findElement(By.name("pass")).click();
         wd.findElement(By.name("pass")).sendKeys("secret");
         wd.findElement(By.name("user")).click();
         wd.findElement(By.name("user")).sendKeys("admin");
         wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
     }
-    
+
     @Test
-    public void ContactCreationTest() {
+    public void testContactCreation() {
         wd.findElement(By.linkText("add new")).click();
         wd.findElement(By.name("firstname")).click();
         wd.findElement(By.name("firstname")).clear();
+        fillContactForm();
+        wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
+        wd.findElement(By.xpath("//table[@id='maintable']//td[.='Belch']")).click();
+    }
+
+    private void fillContactForm() {
         wd.findElement(By.name("firstname")).sendKeys("Kate");
         wd.findElement(By.name("lastname")).click();
         wd.findElement(By.name("lastname")).clear();
@@ -45,10 +55,8 @@ public class ContactCreationTest {
         wd.findElement(By.name("address2")).click();
         wd.findElement(By.name("address2")).clear();
         wd.findElement(By.name("address2")).sendKeys("apartmen 1");
-        wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
-        wd.findElement(By.xpath("//table[@id='maintable']//td[.='Belch']")).click();
     }
-    
+
     @AfterMethod
     public void tearDown() {
         wd.quit();
