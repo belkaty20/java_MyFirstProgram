@@ -18,6 +18,7 @@ public class ContactHelper extends HelperBase{
   public void unitNewFirstName() {
     wd.findElement(By.name("firstname")).click();
     wd.findElement(By.name("firstname")).clear();
+
   }
 
   public void gotoAddNewContact() {
@@ -25,17 +26,10 @@ public class ContactHelper extends HelperBase{
   }
 
   public void fillContactForm(ContactData contactData) {
-
-
     wd.findElement(By.name("firstname")).sendKeys(contactData.getFirstname());
-    wd.findElement(By.name("lastname")).click();
-    wd.findElement(By.name("lastname")).clear();
-    wd.findElement(By.name("lastname")).sendKeys(contactData.getLastname());
-    wd.findElement(By.name("address")).click();
-    wd.findElement(By.name("address")).clear();
-    wd.findElement(By.name("address")).sendKeys(contactData.getStreet());
-    wd.findElement(By.name("address2")).click();
-    wd.findElement(By.name("address2")).clear();
-    wd.findElement(By.name("address2")).sendKeys(contactData.getApartment());
+    type(By.name("lastname"), contactData.getLastname());
+    type(By.name("address"), contactData.getStreet());
+    type(By.name("address2"), contactData.getApartment());
+
   }
 }
