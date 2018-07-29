@@ -4,11 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.pft.addressbook.model.ContactData;
 
-public class ContactHelper {
-  private FirefoxDriver wd;
+public class ContactHelper extends HelperBase{
+
 
   public ContactHelper(FirefoxDriver wd) {
-    this.wd = wd;
+    super(wd);
   }
 
   public void submitNewContact() {
@@ -25,6 +25,8 @@ public class ContactHelper {
   }
 
   public void fillContactForm(ContactData contactData) {
+
+
     wd.findElement(By.name("firstname")).sendKeys(contactData.getFirstname());
     wd.findElement(By.name("lastname")).click();
     wd.findElement(By.name("lastname")).clear();
