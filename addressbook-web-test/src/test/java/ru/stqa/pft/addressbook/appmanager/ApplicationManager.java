@@ -2,6 +2,7 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.BrowserType;
 
 import java.util.concurrent.TimeUnit;
 
@@ -16,7 +17,12 @@ public class ApplicationManager {
 
 
   public void init() {
-    wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true).setBinary("C:\\Program Files\\Mozilla Firefox\\firefox.exe"));
+    String browser = BrowserType.FIREFOX;
+    if (browser ==BrowserType.FIREFOX) {
+      wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true).setBinary
+              ("C:\\Program Files\\Mozilla Firefox\\firefox.exe"));
+    } else if (browser == BrowserType.CHROME)
+
     wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
     wd.get("http://localhost/addressbook/");
     groupHelper = new GroupHelper(wd);
